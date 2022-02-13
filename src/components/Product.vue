@@ -6,11 +6,16 @@
         <h4>Your NFTs</h4>
         <p></p>
       </div>
-      <div class="row" v-for="n in nftdata.length / 2" :key="n">
+      <div
+        class="row"
+        v-for="n in nftdata.length / 2"
+        :key="n"
+        style="padding-bottom: 50px"
+      >
         <div class="col s6">
           <div class="content">
             <img
-              :src="nftdata[2 * n + 0] ? nftdata[2 * n + 0].image_url : ''"
+              :src="nftdata[2 * n + 0] ? nftdata[2 * n + 0].image : ''"
               alt=""
             />
             <h5>
@@ -31,7 +36,7 @@
         <div class="col s6">
           <div class="content">
             <img
-              :src="nftdata[2 * n + 1] ? nftdata[2 * n + 1].image_url : ''"
+              :src="nftdata[2 * n + 1] ? nftdata[2 * n + 1].image : ''"
               alt=""
             />
             <h5>
@@ -68,13 +73,20 @@ export default {
     var globalnftdata = this.nftdata;
     axios
       .get(
-        "https://dtpln2t3w6.execute-api.us-east-1.amazonaws.com/getassests/0x42c87fc41a23684fe07264b57a123f1954857cd2"
+        "https://1tftnvgsji.execute-api.us-east-1.amazonaws.com/getnfts/0x42c87fc41a23684fe07264b57a123f1954857cd2"
       )
       .then(function (response) {
         // handle success
         // console.log(this.nftdata);
         console.log(response.data);
         for (var j = 0; j < response.data.length; j++) {
+          response.data[j].image = response.data[j].image
+            .split("gateway.pinata.cloud")
+            .join("ipfs.io")
+            .split("ipfs://")
+            .join("https://ipfs.io/ipfs/")
+            .split("rebelkidscats.mypinata.cloud")
+            .join("ipfs.io");
           globalnftdata.push(response.data[j]);
         }
         // this.nftdata = response.data;

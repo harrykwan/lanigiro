@@ -8,7 +8,7 @@
     </div>
     <!-- site brand	 -->
     <div class="site-brand">
-      <a href="index.html"><h1>LANIGIRO</h1></a>
+      <a href="/"><h1>LANIGIRO</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -33,7 +33,7 @@
         <h6>{{ walletid.substring(walletid.length / 2) }}</h6>
       </li>
       <li class="li-top">
-        <a href="index.html"><i class="fa fa-home"></i>Home</a>
+        <a href="/"><i class="fa fa-home"></i>Home</a>
       </li>
       <li>
         <a href="product.html"
